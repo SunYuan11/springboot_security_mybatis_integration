@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sb_ss_myb.frame.dao.MenuDao">
+
+	<select id="queryAllAuthorities" resultType="map">
+		select m.url, rm.role_id
+		  from sbss_role_menu rm, sbss_menu m
+		 where rm.menu_id = m.id
+		   and url is not null
+	</select>
+	
+	<select id="queryUserMenuByUsername" resultType="com.sb_ss_myb.frame.domain.SbssMenu" parameterType="String">
+		select m.*
+		  from sbss_user u, sbss_user_role ur, sbss_role_menu rm, sbss_menu m
+		 where u.id = ur.user_id
+		   and ur.role_id = rm.role_id
+		   and rm.menu_id = m.id
+		   and u.username = #{username}
+	</select>
+</mapper>

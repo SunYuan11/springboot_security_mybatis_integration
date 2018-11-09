@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <!-- Bootstrap Styles-->
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link th:href="@{css/font-awesome.css}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link th:href="@{js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link th:href="@{css/custom-styles.css}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> 
+     
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/index }"><i class="fa fa-gear"></i> <strong>SBSSM</strong></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="divider"></li>
+                <li><a th:href="@{dologout}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" th:each="menuItem,menuStat : ${session.menu}">
+                    <li>
+                        <a href="#" class="active-menu"><i class="glyphicon glyphicon-chevron-right"></i> <span th:text="${menuItem.getString('menuname') }" ></span></a>
+                        <ul class="nav nav-second-level in" id="main-menu" th:each="cmenuItem,menuStat : ${menuItem.getJSONArray('childMenu') }">
+		                    <li>
+		                        <a th:href="${cmenuItem.getString('url') }" ><i class="glyphicon glyphicon-chevron-right"></i> <span th:text="${cmenuItem.getString('menuname') }"></span></a>
+		                        <ul class="nav nav-third-level in" id="main-menu" th:each="ccmenuItem,menuStat : ${cmenuItem.getJSONArray('childMenu') }">
+				                    <li>
+				                        <a th:href="${ccmenuItem.getString('url') }" ><i class="glyphicon glyphicon-chevron-right"></i> <span th:text="${ccmenuItem.getString('menuname') }"></span></a>
+				                    </li>
+				                </ul>
+		                    </li>
+		                </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="alert alert-danger">
+                403 Access denied! Please contact Administrator!<hr>
+                <a href="javascript:history.go(-1)">&lt;&lt;GO BACK</a>
+				</div>
+		
+				<footer><p>Spring boot Spring security Mybatis Integration Demo.</p></footer>
+            </div>
+        </div>
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    
+    <script th:src="@{js/jquery-1.10.2.js}"></script>
+    <!-- Bootstrap Js -->
+    <script th:src="@{js/bootstrap.min.js}"></script>
+	 
+    <!-- Metis Menu Js -->
+    <script th:src="@{js/jquery.metisMenu.js}"></script>
+    <!-- Morris Chart Js -->
+    <script th:src="@{js/morris/raphael-2.1.0.min.js}"></script>
+    <script th:src="@{js/morris/morris.js}"></script>
+	
+	
+	<script th:src="@{js/easypiechart.js}"></script>
+	<script th:src="@{js/easypiechart-data.js}"></script>
+	
+	 <script th:src="@{js/Lightweight-Chart/jquery.chart.js}"></script>
+	
+    <!-- Custom Js -->
+    <script th:src="@{js/custom-scripts.js}"></script>
+ 
+
+</body>
+
+</html>

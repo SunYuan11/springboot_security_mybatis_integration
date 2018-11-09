@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sb_ss_myb.frame.dao.RoleDao">
+	
+	<select id="queryRolebyUserId" parameterType="int" resultType="com.sb_ss_myb.frame.domain.SbssRole">
+		select *
+		  from sbss_role
+		 where id in (select role_id from sbss_user_role where user_id = #{userid,jdbcType=INTEGER})
+	</select>
+	
+</mapper>
